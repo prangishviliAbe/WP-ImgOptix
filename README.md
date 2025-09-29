@@ -15,10 +15,10 @@ The plugin focuses on reliability and control for site owners: it exposes concur
 - Safe fallbacks: uses WordPress' image editor first, then GD re-encode (JPEG/PNG/WEBP) if available
 - Shows before/after sizes, percentage saved, and which method was used
 - Respectful defaults to avoid aggressive quality loss
- - Client-side concurrency controls (Workers) and a "Reduce server pressure" toggle to limit parallelism and slow retry rates
- - Retry and exponential backoff logic with special handling for HTTP 503 responses (temporary pause)
- - Per-image diagnostics: method used (WP editor or GD re-encode), attempt-by-attempt sizes, and a per-card Retry button for manual re-queues
- - Works with hosts that provide either Imagick or GD; when WP_Image_Editor doesn't shrink a file, a GD re-encode fallback is attempted for JPEG/PNG/WEBP
+- Client-side concurrency controls (Workers) and a "Reduce server pressure" toggle to limit parallelism and slow retry rates
+- Retry and exponential backoff logic with special handling for HTTP 503 responses (temporary pause)
+- Per-image diagnostics: method used (WP editor or GD re-encode), attempt-by-attempt sizes, and a per-card Retry button for manual re-queues
+- Works with hosts that provide either Imagick or GD; when WP_Image_Editor doesn't shrink a file, a GD re-encode fallback is attempted for JPEG/PNG/WEBP
 
 ## Installation
 
@@ -33,12 +33,12 @@ The plugin focuses on reliability and control for site owners: it exposes concur
 - Monitor progress with the in-UI progress bar. Each processing card flashes with a neon effect while being processed.
 - After processing, the card shows the new size, the delta saved, and which method was used.
 - Use the "Keep backup copies" checkbox if you want the plugin to keep a `.backup-<timestamp>` copy of the original file.
- - Click "Load Images" to fetch thumbnails of image attachments.
- - Use the toolbar to choose compression level, workers (parallelism), and "Reduce server pressure".
- - Select images (individually or using Select all) and click "Optimize Selected".
- - Monitor progress with the in-UI progress bar. Each processing card flashes with a neon effect while being processed. Cards display before/after sizes, percent saved and a short diagnostics section.
- - If the server returns 503 (busy), the client will pause for a short period and then resume using exponential backoff. You can also manually Retry a failed card to re-enqueue it.
- - Use the "Keep backup copies" checkbox if you want the plugin to keep a `.backup-<timestamp>` copy of the original file.
+- Click "Load Images" to fetch thumbnails of image attachments.
+- Use the toolbar to choose compression level, workers (parallelism), and "Reduce server pressure".
+- Select images (individually or using Select all) and click "Optimize Selected".
+- Monitor progress with the in-UI progress bar. Each processing card flashes with a neon effect while being processed. Cards display before/after sizes, percent saved and a short diagnostics section.
+- If the server returns 503 (busy), the client will pause for a short period and then resume using exponential backoff. You can also manually Retry a failed card to re-enqueue it.
+- Use the "Keep backup copies" checkbox if you want the plugin to keep a `.backup-<timestamp>` copy of the original file.
 
 ## Settings
 
@@ -54,8 +54,8 @@ Note: You can override the compression level per optimization call by passing ar
 - The plugin uses `admin-ajax.php` endpoints for listing and per-item optimization to avoid cross-origin REST issues in complex setups.
 - The plugin will attempt to preserve image dimensions unless you pass a `max_width` to the optimization function.
 - If you need more advanced compression (mozjpeg, pngquant), consider adding server-side tooling and invoking it via a custom filter or background worker.
- - The plugin will attempt to preserve image dimensions unless you pass a `max_width` to the optimization function.
- - If you need more advanced compression (mozjpeg, pngquant), consider adding server-side tooling and invoking it via a custom filter or background worker. The plugin is designed to be extensible via filters in `includes/class-imgoptix.php`.
+- The plugin will attempt to preserve image dimensions unless you pass a `max_width` to the optimization function.
+- If you need more advanced compression (mozjpeg, pngquant), consider adding server-side tooling and invoking it via a custom filter or background worker. The plugin is designed to be extensible via filters in `includes/class-imgoptix.php`.
 
 ## Changelog
 
